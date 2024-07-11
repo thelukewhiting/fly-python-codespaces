@@ -6,11 +6,6 @@ RUN pip install poetry
 # Configure Poetry
 RUN poetry config virtualenvs.in-project true
 
-# Install dependencies
-WORKDIR /workspace
-COPY pyproject.toml ./
-RUN poetry install
-
 # Install additional tools
 RUN apt-get update && export DEBIAN_FRONTEND=noninteractive \
     && apt-get -y install --no-install-recommends git curl
@@ -23,3 +18,18 @@ ENV PATH="/root/.fly/bin:$PATH"
 
 # Make sure the entrypoint script can use the Fly CLI
 RUN echo 'export PATH="/root/.fly/bin:$PATH"' >> /home/vscode/.bashrc
+
+# Set the working directory
+WORKDIR /workspaces/fly-python-codespaces
+
+# Copy pyproject.toml and poetry.lock (if it exists)
+COPY pyproject.toml poetry.lock* ./
+
+# Install dependencies
+RUN poetry install --no-root
+
+# Copy the rest of the code
+COPY . .
+
+# Install the project
+RUN poetry install

@@ -1,8 +1,10 @@
 {
-    "name": "Python Poetry Project",
+    "name": "Fly.io Python",
     "dockerFile": "Dockerfile",
+    "context": "..",
+    "remoteUser": "vscode",
     "settings": {
-        "python.defaultInterpreterPath": "/workspace/.venv/bin/python",
+        "python.defaultInterpreterPath": "/workspaces/fly-python-codespaces/.venv/bin/python",
         "python.linting.enabled": true,
         "python.linting.pylintEnabled": true,
         "python.formatting.autopep8Path": "/usr/local/py-utils/bin/autopep8",
@@ -18,10 +20,5 @@
         "ms-python.python",
         "ms-python.vscode-pylance"
     ],
-    "forwardPorts": [8000],
-    "postCreateCommand": "poetry install",
-    "remoteUser": "vscode",
-    "remoteEnv": {
-        "PATH": "${containerEnv:PATH}:/root/.fly/bin"
-    }
+    "postCreateCommand": "poetry install && poetry shell"
 }
