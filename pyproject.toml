@@ -1,15 +1,18 @@
-[tool.poetry]
-name = "python-project"
+[
+tool.poetry
+]
+name = "fly-python-codespaces"
 version = "0.1.0"
-description = "A simple Python project using Poetry"
-authors = ["Your Name <you@example.com>"]
+description = "A Python project for Fly.io using GitHub Codespaces"
+authors = ["Luke Whiting <hello@lukewhiting.com>"]
 
-[tool.poetry.dependencies]
+[
+tool.poetry.dependencies
+]
 python = "^3.9"
 
-[tool.poetry.dev-dependencies]
-pytest = "^6.2"
-
-[build-system]
+[
+build-system
+]
 requires = ["poetry-core>=1.0.0"]
 build-backend = "poetry.core.masonry.api"
