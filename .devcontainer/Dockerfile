@@ -23,13 +23,10 @@ RUN echo 'export PATH="/root/.fly/bin:$PATH"' >> /home/vscode/.bashrc
 WORKDIR /workspaces/fly-python-codespaces
 
 # Copy pyproject.toml and poetry.lock (if it exists)
-COPY pyproject.toml poetry.lock* ./
-
-# Install dependencies
-RUN poetry install --no-root
-
-# Copy the rest of the code
 COPY . .
 
+# Install dependencies
+RUN if [ -f "pyproject.toml" ]; then poetry install --no-root; fi
+
 # Install the project
-RUN poetry install
+RUN if [ -f "pyproject.toml" ]; then poetry install; fi

@@ -20,5 +20,5 @@
         "ms-python.python",
         "ms-python.vscode-pylance"
     ],
-    "postCreateCommand": "poetry install && poetry shell"
+    "postCreateCommand": "if [ -f \"pyproject.toml\" ]; then poetry install && poetry shell; fi"
 }
