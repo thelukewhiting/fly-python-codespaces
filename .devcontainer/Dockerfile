@@ -14,10 +14,12 @@ RUN apt-get update && export DEBIAN_FRONTEND=noninteractive \
 RUN curl -L https://fly.io/install.sh | sh
 
 # Add Fly to PATH
-ENV PATH="/root/.fly/bin:$PATH"
+ENV FLYCTL_INSTALL="/root/.fly"
+ENV PATH="$FLYCTL_INSTALL/bin:$PATH"
 
 # Make sure the entrypoint script can use the Fly CLI
-RUN echo 'export PATH="/root/.fly/bin:$PATH"' >> /home/vscode/.bashrc
+RUN echo 'export FLYCTL_INSTALL="/root/.fly"' >> /home/vscode/.bashrc && \
+    echo 'export PATH="$FLYCTL_INSTALL/bin:$PATH"' >> /home/vscode/.bashrc
 
 # Set the working directory
 WORKDIR /workspaces/fly-python-codespaces
@@ -39,4 +41,5 @@ ENV VIRTUAL_ENV=/workspaces/fly-python-codespaces/.venv
 ENV PATH="$VIRTUAL_ENV/bin:$PATH"
 
 # Ensure Fly CLI is available to all users
-RUN ln -s /root/.fly/bin/fly /usr/local/bin/fly
+RUN ln -s /root/.fly/bin/flyctl /usr/local/bin/flyctl && \
+    ln -s /root/.fly/bin/flyctl /usr/local/bin/fly

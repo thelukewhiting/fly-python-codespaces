@@ -20,5 +20,12 @@
     "postCreateCommand": "poetry install && . /workspaces/fly-python-codespaces/.venv/bin/activate && fly version",
     "remoteEnv": {
         "PATH": "${containerEnv:PATH}:/root/.fly/bin"
+    },
+    "features": {
+        "ghcr.io/devcontainers/features/common-utils:2": {
+            "installZsh": "true",
+            "username": "vscode",
+            "upgradePackages": "true"
+        }
     }
 }
