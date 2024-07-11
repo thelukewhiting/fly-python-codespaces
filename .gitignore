@@ -1,0 +1,14 @@
+# Python
+__pycache__/
+*.py[cod]
+*$py.class
+
+# Poetry
+.venv/
+
+# VS Code
+.vscode/
+
+# Misc
+.DS_Store
+*.log
