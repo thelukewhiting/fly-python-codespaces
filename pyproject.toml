@@ -3,6 +3,9 @@ name = "fly-python-codespaces"
 version = "0.1.0"
 description = "A Python project for Fly.io using GitHub Codespaces"
 authors = ["Luke Whiting <hello@lukewhiting.com>"]
+packages = [
+    { include = "fly_python_codespaces" },
+]
 
 [tool.poetry.dependencies]
 python = "^3.9"

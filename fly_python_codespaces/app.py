@@ -1,4 +1,3 @@
-# Your Python code here
 def main():
     print("Hello, Fly.io and GitHub Codespaces!")
 
