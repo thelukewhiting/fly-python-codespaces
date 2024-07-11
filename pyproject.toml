@@ -3,9 +3,6 @@ name = "fly-python-codespaces"
 version = "0.1.0"
 description = "A Python project for Fly.io using GitHub Codespaces"
 authors = ["Luke Whiting <hello@lukewhiting.com>"]
-packages = [
-    { include = "fly_python_codespaces" },
-]
 
 [tool.poetry.dependencies]
 python = "^3.9"
@@ -17,5 +14,5 @@ black = "^22.3.0"
 requires = ["poetry-core>=1.0.0"]
 build-backend = "poetry.core.masonry.api"
 
-[virtualenvs]
-in-project = true
+[tool.poetry.scripts]
+start = "python app.py"
