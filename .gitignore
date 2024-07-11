@@ -5,9 +5,13 @@ __pycache__/
 
 # Poetry
 .venv/
+poetry.lock
 
 # VS Code
 .vscode/
+
+# Fly.io
+fly.toml
 
 # Misc
 .DS_Store
