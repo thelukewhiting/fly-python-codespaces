@@ -1,7 +1,7 @@
 FROM mcr.microsoft.com/vscode/devcontainers/python:3.9
 
 # Install Poetry
-RUN pip install poetry
+RUN pip install poetry==1.8.3
 
 # Configure Poetry
 RUN poetry config virtualenvs.in-project true
@@ -26,10 +26,14 @@ WORKDIR /workspaces/fly-python-codespaces
 COPY pyproject.toml poetry.lock* ./
 
 # Install dependencies
-RUN if [ -f "pyproject.toml" ]; then poetry install --no-root; fi
+RUN poetry install --no-root
 
 # Copy the rest of the code
 COPY . .
 
 # Install the project
-RUN if [ -f "pyproject.toml" ]; then poetry install; fi
+RUN poetry install
+
+# Activate virtual environment
+ENV VIRTUAL_ENV=/workspaces/fly-python-codespaces/.venv
+ENV PATH="$VIRTUAL_ENV/bin:$PATH"

@@ -5,20 +5,21 @@
     "remoteUser": "vscode",
     "settings": {
         "python.defaultInterpreterPath": "/workspaces/fly-python-codespaces/.venv/bin/python",
+        "python.pythonPath": "/workspaces/fly-python-codespaces/.venv/bin/python",
         "python.linting.enabled": true,
         "python.linting.pylintEnabled": true,
-        "python.formatting.autopep8Path": "/usr/local/py-utils/bin/autopep8",
-        "python.formatting.blackPath": "/usr/local/py-utils/bin/black",
-        "python.formatting.yapfPath": "/usr/local/py-utils/bin/yapf",
-        "python.linting.banditPath": "/usr/local/py-utils/bin/bandit",
-        "python.linting.flake8Path": "/usr/local/py-utils/bin/flake8",
-        "python.linting.mypyPath": "/usr/local/py-utils/bin/mypy",
-        "python.linting.pycodestylePath": "/usr/local/py-utils/bin/pycodestyle",
-        "python.linting.pydocstylePath": "/usr/local/py-utils/bin/pydocstyle"
+        "python.formatting.autopep8Path": "/workspaces/fly-python-codespaces/.venv/bin/autopep8",
+        "python.formatting.blackPath": "/workspaces/fly-python-codespaces/.venv/bin/black",
+        "python.formatting.yapfPath": "/workspaces/fly-python-codespaces/.venv/bin/yapf",
+        "python.linting.banditPath": "/workspaces/fly-python-codespaces/.venv/bin/bandit",
+        "python.linting.flake8Path": "/workspaces/fly-python-codespaces/.venv/bin/flake8",
+        "python.linting.mypyPath": "/workspaces/fly-python-codespaces/.venv/bin/mypy",
+        "python.linting.pycodestylePath": "/workspaces/fly-python-codespaces/.venv/bin/pycodestyle",
+        "python.linting.pydocstylePath": "/workspaces/fly-python-codespaces/.venv/bin/pydocstyle"
     },
     "extensions": [
         "ms-python.python",
         "ms-python.vscode-pylance"
     ],
-    "postCreateCommand": "poetry install && poetry shell"
+    "postCreateCommand": "poetry install && . /workspaces/fly-python-codespaces/.venv/bin/activate"
 }
