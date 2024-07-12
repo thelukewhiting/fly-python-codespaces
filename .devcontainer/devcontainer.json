@@ -17,9 +17,9 @@
         "ms-python.python",
         "ms-python.vscode-pylance"
     ],
-    "postCreateCommand": "poetry install && . /workspaces/fly-python-codespaces/.venv/bin/activate && fly version",
+    "postCreateCommand": "poetry install && fly version",
     "remoteEnv": {
-        "PATH": "${containerEnv:PATH}:/home/vscode/.fly/bin"
+        "PATH": "${containerEnv:PATH}:/home/vscode/.fly/bin:/workspaces/fly-python-codespaces/.venv/bin"
     },
     "features": {
         "ghcr.io/devcontainers/features/common-utils:2": {
