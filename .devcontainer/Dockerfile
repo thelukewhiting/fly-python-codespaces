@@ -8,7 +8,7 @@ RUN poetry config virtualenvs.in-project true
 
 # Install additional tools
 RUN apt-get update && export DEBIAN_FRONTEND=noninteractive \
-    && apt-get -y install --no-install-recommends git curl sudo
+    && apt-get -y install --no-install-recommends git curl ca-certificates
 
 # Set the working directory
 WORKDIR /workspaces/fly-python-codespaces
@@ -25,22 +25,19 @@ COPY . .
 # Install the project
 RUN poetry install
 
-# Install Fly CLI for all users
-RUN curl -L https://fly.io/install.sh | sudo sh
+# Install Fly CLI
+RUN curl -L https://fly.io/install.sh | sh
 
-# Add Fly to PATH for all users
-ENV FLYCTL_INSTALL="/usr/local/lib/flyctl"
+# Add Fly to PATH
+ENV FLYCTL_INSTALL="/home/vscode/.fly"
 ENV PATH="$FLYCTL_INSTALL/bin:$PATH"
 
 # Make sure the Fly CLI is available in interactive shells
-RUN echo 'export FLYCTL_INSTALL="/usr/local/lib/flyctl"' >> /etc/bash.bashrc && \
-    echo 'export PATH="$FLYCTL_INSTALL/bin:$PATH"' >> /etc/bash.bashrc
+RUN echo 'export FLYCTL_INSTALL="/home/vscode/.fly"' >> /home/vscode/.bashrc && \
+    echo 'export PATH="$FLYCTL_INSTALL/bin:$PATH"' >> /home/vscode/.bashrc
 
 # Ensure the .venv directory is owned by vscode user
 RUN chown -R vscode:vscode /workspaces/fly-python-codespaces/.venv
-
-# Give vscode user sudo privileges
-RUN echo "vscode ALL=(ALL) NOPASSWD:ALL" > /etc/sudoers.d/vscode
 
 # Switch to the vscode user
 USER vscode
