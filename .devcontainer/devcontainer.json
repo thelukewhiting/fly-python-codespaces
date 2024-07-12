@@ -17,9 +17,9 @@
         "ms-python.python",
         "ms-python.vscode-pylance"
     ],
-    "postCreateCommand": "echo 'Codespace created successfully!' && fly version",
+    "postCreateCommand": "echo 'Codespace created successfully!' && which fly && fly version",
     "remoteEnv": {
-        "PATH": "${containerEnv:PATH}:/usr/local/fly/bin:/workspaces/fly-python-codespaces/.venv/bin"
+        "PATH": "${containerEnv:PATH}:/usr/local/lib/flyctl/bin:/workspaces/fly-python-codespaces/.venv/bin"
     },
     "features": {
         "ghcr.io/devcontainers/features/common-utils:2": {
