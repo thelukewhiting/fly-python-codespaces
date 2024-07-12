@@ -28,13 +28,11 @@ RUN poetry install
 # Install Fly CLI
 RUN curl -L https://fly.io/install.sh | sh
 
-# Add Fly to PATH
-ENV FLYCTL_INSTALL="/home/vscode/.fly"
-ENV PATH="$FLYCTL_INSTALL/bin:$PATH"
-
-# Make sure the Fly CLI is available in interactive shells
-RUN echo 'export FLYCTL_INSTALL="/home/vscode/.fly"' >> /home/vscode/.bashrc && \
-    echo 'export PATH="$FLYCTL_INSTALL/bin:$PATH"' >> /home/vscode/.bashrc
+# Add Fly to PATH for all users
+ENV FLYCTL_INSTALL="/root/.fly"
+RUN echo 'export FLYCTL_INSTALL="/root/.fly"' >> /etc/bash.bashrc && \
+    echo 'export PATH="$FLYCTL_INSTALL/bin:$PATH"' >> /etc/bash.bashrc && \
+    ln -s $FLYCTL_INSTALL/bin/fly /usr/local/bin/fly
 
 # Ensure the .venv directory is owned by vscode user
 RUN chown -R vscode:vscode /workspaces/fly-python-codespaces/.venv
@@ -45,3 +43,6 @@ USER vscode
 # Activate virtual environment
 ENV VIRTUAL_ENV=/workspaces/fly-python-codespaces/.venv
 ENV PATH="$VIRTUAL_ENV/bin:$PATH"
+
+# Verify Fly CLI installation
+RUN fly version

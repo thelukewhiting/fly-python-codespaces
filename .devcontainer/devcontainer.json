@@ -17,15 +17,8 @@
         "ms-python.python",
         "ms-python.vscode-pylance"
     ],
-    "postCreateCommand": "echo 'Codespace created successfully!' && echo $PATH && which fly && fly version",
+    "postCreateCommand": "echo 'Codespace created successfully!' && fly version",
     "remoteEnv": {
-        "PATH": "${containerEnv:PATH}:/home/vscode/.fly/bin:/workspaces/fly-python-codespaces/.venv/bin"
-    },
-    "features": {
-        "ghcr.io/devcontainers/features/common-utils:2": {
-            "installZsh": "true",
-            "username": "vscode",
-            "upgradePackages": "true"
-        }
+        "PATH": "${containerEnv:PATH}:/root/.fly/bin:/workspaces/fly-python-codespaces/.venv/bin"
     }
 }
