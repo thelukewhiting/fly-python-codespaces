@@ -39,5 +39,5 @@ RUN apt-get update && apt-get install -y curl
 RUN mkdir -p /tmp/scripts
 
 # Copy the installation script
-COPY install_flyctl.sh /tmp/scripts/install_flyctl.sh
+COPY .devcontainer/install_flyctl.sh /tmp/scripts/install_flyctl.sh
 RUN chmod +x /tmp/scripts/install_flyctl.sh
