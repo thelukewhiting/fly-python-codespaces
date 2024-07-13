@@ -21,15 +21,16 @@ COPY pyproject.toml poetry.lock* ./
 # Copy the project files
 COPY . .
 
+# Create scripts directory and copy the installation script before switching users
+RUN mkdir -p /tmp/scripts
+COPY .devcontainer/install_flyctl.sh /tmp/scripts/install_flyctl.sh
+RUN chmod +x /tmp/scripts/install_flyctl.sh
+
 # Install dependencies and the project
 RUN poetry install
 
 # Ensure the .venv directory is owned by vscode user
 RUN chown -R vscode:vscode /workspaces/fly-python-codespaces
-
-# Copy the installation script before switching users
-COPY .devcontainer/install_flyctl.sh /tmp/scripts/install_flyctl.sh
-RUN chmod +x /tmp/scripts/install_flyctl.sh
 
 # Switch to the vscode user
 USER vscode
@@ -37,6 +38,3 @@ USER vscode
 # Activate virtual environment
 ENV VIRTUAL_ENV=/workspaces/fly-python-codespaces/.venv
 ENV PATH="$VIRTUAL_ENV/bin:$PATH"
-
-# Run the installation script for flyctl
-RUN /tmp/scripts/install_flyctl.sh
