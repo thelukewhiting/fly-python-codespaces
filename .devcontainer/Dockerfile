@@ -16,13 +16,10 @@ WORKDIR /workspaces/fly-python-codespaces
 # Copy pyproject.toml and poetry.lock (if it exists)
 COPY pyproject.toml poetry.lock* ./
 
-# Install dependencies and create virtual environment
-RUN poetry install --no-root
-
-# Copy the rest of the code
+# Copy the project files
 COPY . .
 
-# Install the project
+# Install dependencies and the project
 RUN poetry install
 
 # Install Fly CLI
@@ -36,8 +33,7 @@ RUN echo 'export FLYCTL_INSTALL="/root/.fly"' >> /etc/bash.bashrc && \
     chmod +x /usr/local/bin/fly
 
 # Ensure the .venv directory is owned by vscode user
-RUN mkdir -p /workspaces/fly-python-codespaces/.venv && \
-    chown -R vscode:vscode /workspaces/fly-python-codespaces/.venv
+RUN chown -R vscode:vscode /workspaces/fly-python-codespaces
 
 # Switch to the vscode user
 USER vscode

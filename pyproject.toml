@@ -18,4 +18,4 @@ requires = ["poetry-core"]
 build-backend = "poetry.core.masonry.api"
 
 [tool.poetry.scripts]
-start = "python app.py"
+start = "fly_python_codespaces.app:main"
