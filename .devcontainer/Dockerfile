@@ -26,7 +26,7 @@ COPY .devcontainer/install_flyctl.sh .devcontainer/install_flyctl.sh
 RUN chmod +x .devcontainer/install_flyctl.sh
 
 # Install dependencies and the project
-RUN poetry install
+RUN poetry install --no-root
 
 # Ensure the .venv directory is owned by vscode user
 RUN chown -R vscode:vscode /workspaces/fly-python-codespaces
