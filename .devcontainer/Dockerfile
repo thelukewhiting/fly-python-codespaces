@@ -21,10 +21,9 @@ COPY pyproject.toml poetry.lock* ./
 # Copy the project files
 COPY . .
 
-# Create scripts directory and copy the installation script before switching users
-RUN mkdir -p /tmp/scripts
-COPY .devcontainer/install_flyctl.sh /tmp/scripts/install_flyctl.sh
-RUN chmod +x /tmp/scripts/install_flyctl.sh
+# Copy the installation script to the .devcontainer directory
+COPY .devcontainer/install_flyctl.sh .devcontainer/install_flyctl.sh
+RUN chmod +x .devcontainer/install_flyctl.sh
 
 # Install dependencies and the project
 RUN poetry install

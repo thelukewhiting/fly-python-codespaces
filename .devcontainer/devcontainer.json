@@ -17,7 +17,7 @@
         "ms-python.python",
         "ms-python.vscode-pylance"
     ],
-    "postCreateCommand": "ls -l /tmp/scripts && bash /tmp/scripts/install_flyctl.sh",
+    "postCreateCommand": "bash .devcontainer/install_flyctl.sh",
     "remoteEnv": {
         "PATH": "${containerEnv:PATH}:/usr/local/bin:/root/.fly/bin:/workspaces/fly-python-codespaces/.venv/bin"
     }
