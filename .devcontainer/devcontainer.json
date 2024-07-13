@@ -17,7 +17,7 @@
         "ms-python.python",
         "ms-python.vscode-pylance"
     ],
-    "postCreateCommand": "echo 'Codespace created successfully!' && fly version",
+    "postCreateCommand": "bash /tmp/scripts/install_flyctl.sh",
     "remoteEnv": {
         "PATH": "${containerEnv:PATH}:/usr/local/bin:/root/.fly/bin:/workspaces/fly-python-codespaces/.venv/bin"
     }
