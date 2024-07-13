@@ -19,6 +19,6 @@
     ],
     "postCreateCommand": "echo 'Codespace created successfully!' && fly version",
     "remoteEnv": {
-        "PATH": "${containerEnv:PATH}:/root/.fly/bin:/workspaces/fly-python-codespaces/.venv/bin"
+        "PATH": "${containerEnv:PATH}:/usr/local/bin:/root/.fly/bin:/workspaces/fly-python-codespaces/.venv/bin"
     }
 }

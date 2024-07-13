@@ -2,16 +2,19 @@
 name = "fly-python-codespaces"
 version = "0.1.0"
 description = "A Python project for Fly.io using GitHub Codespaces"
-authors = ["Luke Whiting <hello@lukewhiting.com>"]
+authors = ["Your Name <you@example.com>"]
+readme = "README.md"
+packages = [{include = "fly_python_codespaces"}]
 
 [tool.poetry.dependencies]
 python = "^3.9"
+flask = "^2.0.2"
 
-[tool.poetry.dev-dependencies]
+[tool.poetry.group.dev.dependencies]
 black = "^22.3.0"
 
 [build-system]
-requires = ["poetry-core>=1.0.0"]
+requires = ["poetry-core"]
 build-backend = "poetry.core.masonry.api"
 
 [tool.poetry.scripts]

@@ -32,10 +32,12 @@ RUN curl -L https://fly.io/install.sh | sh
 ENV FLYCTL_INSTALL="/root/.fly"
 RUN echo 'export FLYCTL_INSTALL="/root/.fly"' >> /etc/bash.bashrc && \
     echo 'export PATH="$FLYCTL_INSTALL/bin:$PATH"' >> /etc/bash.bashrc && \
-    ln -s $FLYCTL_INSTALL/bin/fly /usr/local/bin/fly
+    ln -s $FLYCTL_INSTALL/bin/flyctl /usr/local/bin/fly && \
+    chmod +x /usr/local/bin/fly
 
 # Ensure the .venv directory is owned by vscode user
-RUN chown -R vscode:vscode /workspaces/fly-python-codespaces/.venv
+RUN mkdir -p /workspaces/fly-python-codespaces/.venv && \
+    chown -R vscode:vscode /workspaces/fly-python-codespaces/.venv
 
 # Switch to the vscode user
 USER vscode
