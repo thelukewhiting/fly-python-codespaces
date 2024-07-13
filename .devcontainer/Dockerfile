@@ -16,9 +16,6 @@ WORKDIR /workspaces/fly-python-codespaces
 # Copy pyproject.toml and poetry.lock (if it exists)
 COPY pyproject.toml poetry.lock* ./
 
-# Copy the project files
-COPY . .
-
 # Install dependencies and the project
 RUN poetry install
 
@@ -41,6 +38,3 @@ USER vscode
 # Activate virtual environment
 ENV VIRTUAL_ENV=/workspaces/fly-python-codespaces/.venv
 ENV PATH="$VIRTUAL_ENV/bin:$PATH"
-
-# Verify Fly CLI installation
-RUN fly version
