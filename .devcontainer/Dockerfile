@@ -1,7 +1,8 @@
 FROM mcr.microsoft.com/vscode/devcontainers/python:3.9
 
 # Install Poetry
-RUN pip install poetry==1.8.3
+RUN pip install --upgrade pip && \
+    pip install poetry
 
 # Configure Poetry
 RUN poetry config virtualenvs.in-project true
